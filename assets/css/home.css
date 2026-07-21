@@ -138,7 +138,7 @@
   }
 
   .hero__scrim {
-    --scrim-opacity: 60;
+    --scrim-opacity: 0;
   }
 }
 
@@ -763,7 +763,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
+  opacity: 1;
   transition: opacity var(--transition-base);
   border-radius: var(--radius-md);
 }
@@ -775,6 +775,9 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .social-gallery__overlay {
+    opacity: 0;
+  }
   .social-gallery__link:hover .social-gallery__image {
     transform: scale(1.06);
   }
