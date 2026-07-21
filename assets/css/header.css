@@ -288,6 +288,31 @@
   color: #ff8a80;
 }
 
+/* Account icon — outline while signed out, filled once signed in */
+.account-menu__icon--filled,
+.nav-link__icon--filled {
+  display: none;
+}
+
+.site-header.is-signed-in .account-menu__icon--outline,
+.site-header.is-signed-in .nav-link__icon--outline {
+  display: none;
+}
+
+.site-header.is-signed-in .account-menu__icon--filled,
+.site-header.is-signed-in .nav-link__icon--filled {
+  display: block;
+}
+
+/* Signed-in greeting text in both dropdown styles */
+.account-dropdown__greeting,
+.nav-dropdown__greeting {
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-white);
+}
+
 
 /* Cart menu trigger — hover gold */
 .cart-menu__trigger:hover .header-action__icon,

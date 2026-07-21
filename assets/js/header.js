@@ -126,42 +126,39 @@
     </button>
   </div>
 
-  <div class="account-menu" data-account-menu>
+<div class="account-menu" data-account-menu>
     <button type="button" class="header-action account-menu__trigger" data-account-toggle aria-haspopup="true" aria-expanded="false" aria-label="Account menu">
-      <svg class="header-action__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <svg class="header-action__icon account-menu__icon--outline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
         <circle cx="12" cy="8" r="4"/>
         <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke-linecap="round"/>
+      </svg>
+      <svg class="header-action__icon account-menu__icon--filled" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <circle cx="12" cy="8" r="4"/>
+        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
       </svg>
       <span class="header-action__label">Account</span>
     </button>
 
     <div class="account-dropdown" data-account-dropdown>
-      <a href="login.html" class="account-dropdown__item">
+      <a href="login.html" class="account-dropdown__item" data-account-guest>
         <svg class="account-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M10 17l5-5-5-5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M15 12H3" stroke-linecap="round"/>
         </svg>
-        Login
+        Sign In
       </a>
 
-      <a href="signup.html" class="account-dropdown__item">
-        <svg class="account-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <circle cx="9" cy="8" r="3.5"/>
-          <path d="M3 19c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke-linecap="round"/>
-          <path d="M18 9v4M20 11h-4" stroke-linecap="round"/>
-        </svg>
-        Sign Up
-      </a>
+      <p class="account-dropdown__greeting" data-account-user data-account-signed-in hidden></p>
 
-      <a href="logout.html" class="account-dropdown__item account-dropdown__item--logout">
+      <button type="button" class="account-dropdown__item account-dropdown__item--logout" data-account-signout data-account-signed-in hidden>
         <svg class="account-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M16 17l5-5-5-5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M21 12H9" stroke-linecap="round"/>
         </svg>
-        Logout
-      </a>
+        Sign Out
+      </button>
     </div>
   </div>
 
@@ -279,12 +276,16 @@
           <a href="contact-us.html" class="nav-link">Contact Us</a>
         </li>
 
-        <li class="nav-item has-dropdown nav-item--account">
+<li class="nav-item has-dropdown nav-item--account">
           <a href="account.html" class="nav-link">
             <span class="nav-link__label-group">
-              <svg class="nav-link__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <svg class="nav-link__icon nav-link__icon--outline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <circle cx="12" cy="8" r="4"/>
                 <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke-linecap="round"/>
+              </svg>
+              <svg class="nav-link__icon nav-link__icon--filled" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
               </svg>
               Account
             </span>
@@ -292,38 +293,31 @@
               <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
-<ul class="nav-dropdown nav-dropdown--account">
-  <li>
-    <a href="login.html" class="nav-dropdown__link nav-dropdown__link--login">
-      <svg class="nav-dropdown__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M10 17l5-5-5-5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M15 12H3" stroke-linecap="round"/>
-      </svg>
-      Login
-    </a>
-  </li>
-  <li>
-    <a href="signup.html" class="nav-dropdown__link nav-dropdown__link--signup">
-      <svg class="nav-dropdown__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <circle cx="9" cy="8" r="3.5"/>
-        <path d="M3 19c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke-linecap="round"/>
-        <path d="M18 9v4M20 11h-4" stroke-linecap="round"/>
-      </svg>
-      Sign Up
-    </a>
-  </li>
-  <li>
-    <a href="logout.html" class="nav-dropdown__link nav-dropdown__link--logout">
-      <svg class="nav-dropdown__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M16 17l5-5-5-5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M21 12H9" stroke-linecap="round"/>
-      </svg>
-      Logout
-    </a>
-  </li>
-</ul>
+          <ul class="nav-dropdown nav-dropdown--account">
+            <li data-account-guest>
+              <a href="login.html" class="nav-dropdown__link nav-dropdown__link--login">
+                <svg class="nav-dropdown__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M10 17l5-5-5-5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M15 12H3" stroke-linecap="round"/>
+                </svg>
+                Sign In
+              </a>
+            </li>
+            <li data-account-signed-in hidden>
+              <p class="nav-dropdown__greeting" data-account-user></p>
+            </li>
+            <li data-account-signed-in hidden>
+              <button type="button" class="nav-dropdown__link nav-dropdown__link--logout" data-account-signout>
+                <svg class="nav-dropdown__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M16 17l5-5-5-5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M21 12H9" stroke-linecap="round"/>
+                </svg>
+                Sign Out
+              </button>
+            </li>
+          </ul>
         </li>
       </ul>
     </nav>

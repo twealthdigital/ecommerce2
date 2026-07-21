@@ -118,6 +118,13 @@ img {
   display: block;
 }
 
+/* Make the native `hidden` attribute always win over other display
+   rules, no matter how specific they are (e.g. .account-dropdown__item
+   { display: flex } would otherwise cancel out `hidden`). */
+[hidden] {
+  display: none !important;
+}
+
 a {
   color: inherit;
   text-decoration: none;

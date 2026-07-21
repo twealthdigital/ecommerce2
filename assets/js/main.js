@@ -16,6 +16,57 @@ document.addEventListener('DOMContentLoaded', function () {
   initHeaderScroll();
 });
 
+
+
+/* -----------------------------
+   Account auth state (mock, frontend-only for now).
+   Once real sign-in (Google etc.) is wired up, call:
+     BLEGAB_AUTH.signIn({ name: 'Jane Doe' })   // on successful login
+     BLEGAB_AUTH.signOut()                      // on logout
+   and the header will update itself everywhere automatically.
+   ----------------------------- */
+window.BLEGAB_AUTH = {
+  getUser: function () {
+    try {
+      return JSON.parse(localStorage.getItem('blegab_user'));
+    } catch (e) {
+      return null;
+    }
+  },
+  signIn: function (user) {
+    localStorage.setItem('blegab_user', JSON.stringify(user));
+    renderAccountState();
+  },
+  signOut: function () {
+    localStorage.removeItem('blegab_user');
+    renderAccountState();
+  }
+};
+
+function renderAccountState() {
+  var user = window.BLEGAB_AUTH.getUser();
+  var header = document.querySelector('.site-header');
+  if (header) header.classList.toggle('is-signed-in', !!user);
+
+  document.querySelectorAll('[data-account-guest]').forEach(function (el) {
+    el.hidden = !!user;
+  });
+  document.querySelectorAll('[data-account-signed-in]').forEach(function (el) {
+    el.hidden = !user;
+  });
+  document.querySelectorAll('[data-account-user]').forEach(function (el) {
+    el.textContent = user ? 'Hi, ' + user.name : '';
+  });
+}
+
+document.addEventListener('click', function (event) {
+  if (event.target.closest('[data-account-signout]')) {
+    window.BLEGAB_AUTH.signOut();
+  }
+});
+
+document.addEventListener('DOMContentLoaded', renderAccountState);
+
 /* -----------------------------
    Mobile navigation drawer
    ----------------------------- */
