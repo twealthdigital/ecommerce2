@@ -10,12 +10,12 @@
 
 .hero {
   position: relative;
-  min-height: 480px;
+  min-height: 700px;
   display: flex;
   align-items: center;
   overflow: hidden;
   background-color: var(--color-bg-dark);
-  margin-top: 150px;
+  padding-top: var(--space-2xl);
 }
 
 /* Full-screen photo, fills the entire section, no side panel */
@@ -104,6 +104,99 @@
 
 
 
+/* Hero entrance animation */
+.hero__image {
+  transform: scale(1.08);
+  opacity: 0;
+  animation: heroImageIn 6s ease-out forwards;
+}
+
+@keyframes heroImageIn {
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.hero__word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px);
+  filter: blur(10px);
+  animation: heroWordIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero__word:nth-child(1) { animation-delay: 0.4s; }
+.hero__word:nth-child(2) { animation-delay: 0.8s; }
+.hero__word:nth-child(3) { animation-delay: 1.2s; }
+
+@keyframes heroWordIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.hero__title {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__title::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(212, 175, 55, 0.35),
+    transparent
+  );
+  animation: heroShimmer 1.2s ease-out 2s forwards;
+}
+
+@keyframes heroShimmer {
+  to { left: 150%; }
+}
+
+.hero__subtitle {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeUp 0.7s ease-out 1.7s forwards;
+}
+
+.hero__cta {
+  opacity: 0;
+  transform: translateY(25px);
+  animation: heroFadeUp 0.8s ease-out 2s forwards;
+}
+
+@keyframes heroFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__image,
+  .hero__word,
+  .hero__subtitle,
+  .hero__cta,
+  .hero__title::after {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+
+
 /* -----------------------------
    Tablet (≥768px)
    ----------------------------- */
@@ -127,6 +220,7 @@
 @media (min-width: 1024px) {
   .hero {
     min-height: 640px;
+    margin-top: 150px;
   }
 
   .hero__content {
