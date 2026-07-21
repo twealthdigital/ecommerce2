@@ -249,7 +249,7 @@
   .whatsapp-widget__button {
     width: 46px;
     height: 46px;
-    bottom: calc(var(--space-md) + 42px + 100px);
+    bottom: calc(var(--space-md) + 42px + 140px);
   }
 
   .whatsapp-widget__button-icon,
