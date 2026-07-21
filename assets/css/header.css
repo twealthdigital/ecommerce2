@@ -762,6 +762,7 @@ body.announcement-dismissed .primary-nav__header {
   overflow-y: auto;
   flex: 1;
   min-height: 0;
+  background-color: var(--color-bg-dark);
 }
 
 .nav-item {
