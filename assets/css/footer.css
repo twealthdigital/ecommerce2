@@ -1,0 +1,259 @@
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.site-footer {
+  background-color: var(--color-bg-dark);
+  border-top: 1px solid var(--color-border-dark);
+}
+
+.footer-main {
+  padding-block: var(--space-2xl) var(--space-xl);
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  overflow-x: hidden;
+}
+
+/* -----------------------------
+   Mobile reorder (<768px):
+   Contact column first, then the centered brand block
+   (logo + text), then Shop/Help/Account stay side by side.
+   footer-links is unwrapped with display:contents so its
+   columns become direct grid items of footer-main and can
+   be reordered independently of the brand block.
+   ----------------------------- */
+.footer-links {
+  display: contents;
+}
+
+.footer-col--contact {
+  order: -2;
+  grid-column: 1 / -1;
+}
+
+.footer-brand {
+  order: -1;
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-brand__text {
+  margin-inline: auto;
+}
+
+.footer-brand__socials {
+  justify-content: center;
+}
+
+.footer-col {
+  min-width: 0;
+}
+
+/* Brand column */
+.footer-brand__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.footer-brand__logo-image {
+  height: 100px;
+  width: auto;
+}
+
+.footer-brand__text {
+  margin-top: var(--space-sm);
+  max-width: 320px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+.footer-brand__socials {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.footer-brand__social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border-dark);
+  color: var(--color-white);
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.footer-brand__social-link:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+.footer-brand__social-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Link columns */
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg) var(--space-sm);
+}
+
+.footer-col {
+  min-width: 140px;
+}
+
+.footer-col__title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-white);
+}
+
+.footer-col__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.footer-col__link {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.footer-col__link:hover {
+  color: var(--color-gold);
+}
+
+.footer-col__contact-item {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* Bottom bar */
+.footer-bottom {
+  border-top: 1px solid var(--color-border-dark);
+  padding-block: var(--space-md);
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.footer-bottom__copyright {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.footer-bottom__payments {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-bottom__payment-icon {
+  height: 20px;
+  width: auto;
+  border-radius: 3px;
+}
+
+/* Back-to-top button */
+.footer-back-to-top {
+  position: fixed;
+  right: var(--space-md);
+  bottom: var(--space-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: var(--color-gold);
+  color: #1a1a1a;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity var(--transition-fast), transform var(--transition-fast), background-color var(--transition-fast);
+  z-index: 90;
+}
+
+.footer-back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.footer-back-to-top:hover {
+  background-color: var(--color-gold-light);
+}
+
+.footer-back-to-top__icon {
+  width: 18px;
+  height: 18px;
+}
+
+
+
+/* -----------------------------
+   Tablet (≥768px)
+   ----------------------------- */
+@media (min-width: 768px) {
+  .footer-main {
+    grid-template-columns: 1.2fr 2fr;
+    gap: var(--space-xl);
+  }
+
+  /* Undo the mobile reorder trick — footer-links becomes a real
+     box again and columns return to their normal left-to-right order */
+  .footer-links {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    justify-content: start;
+    gap: var(--space-lg) var(--space-xl);
+  }
+
+  .footer-col--contact {
+    order: initial;
+    grid-column: auto;
+  }
+
+  .footer-brand {
+    order: initial;
+    grid-column: auto;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .footer-brand__text {
+    margin-inline: 0;
+  }
+
+  .footer-brand__socials {
+    justify-content: flex-start;
+  }
+
+}
+
+/* -----------------------------
+   Desktop (≥1024px)
+   ----------------------------- */
+@media (min-width: 1024px) {
+  .footer-main {
+    grid-template-columns: 1.4fr 2fr;
+  }
+}
