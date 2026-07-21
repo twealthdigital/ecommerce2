@@ -815,6 +815,8 @@ body.announcement-dismissed .primary-nav__header {
 }
 
 .nav-dropdown__link {
+  display: block;
+  width: 100%;
   padding: 12px 0 12px var(--space-sm);
   font-size: 13px;
   color: var(--color-text-muted);
@@ -823,6 +825,39 @@ body.announcement-dismissed .primary-nav__header {
 
 .nav-dropdown__link:hover {
   color: var(--color-gold);
+}
+
+.nav-dropdown--account .nav-dropdown__link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-inline: var(--space-sm);
+  border-radius: var(--radius-sm);
+}
+
+.nav-dropdown--account li + li {
+  margin-top: 6px;
+}
+
+.nav-dropdown__link-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.nav-dropdown--account .nav-dropdown__link--login,
+.nav-dropdown--account .nav-dropdown__link--signup {
+  background-color: var(--color-bg-dark-alt);
+}
+
+.nav-dropdown--account .nav-dropdown__link--logout {
+  background-color: rgba(229, 115, 115, 0.12);
+  color: #e57373;
+}
+
+.nav-dropdown--account .nav-dropdown__link--logout:hover {
+  background-color: rgba(229, 115, 115, 0.22);
+  color: #ff8a80;
 }
 
 /* Overlay behind the mobile nav drawer */
