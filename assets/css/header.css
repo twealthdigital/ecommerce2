@@ -758,7 +758,7 @@ body.announcement-dismissed .primary-nav__header {
 .nav-list {
   display: flex;
   flex-direction: column;
-  padding: var(--space-sm) var(--page-gutter);
+  padding: var(--space-sm) var(--page-gutter) var(--space-2xl);
   overflow-y: auto;
   flex: 1;
   min-height: 0;
