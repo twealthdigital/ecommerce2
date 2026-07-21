@@ -51,18 +51,6 @@
 }
 
 
-@media (max-width: 480px) {
-  .whatsapp-widget__button {
-    width: 46px;
-    height: 46px;
-    bottom: calc(var(--space-sm) + 12px);
-  }
-
-  .whatsapp-widget__box {
-    bottom: calc(var(--space-sm) + 42px + 14px + 46px + 12px);
-  }
-}
-
 
 /* -----------------------------
    Chat box
@@ -249,8 +237,12 @@
   .whatsapp-widget__button {
     width: 46px;
     height: 46px;
-    bottom: calc(var(--space-md) + 42px + 100px);
   }
+
+  .whatsapp-widget__box {
+    bottom: calc(var(--space-sm) + 42px + 14px + 46px + 12px);
+  }
+}
 
   .whatsapp-widget__button-icon,
   .whatsapp-widget__button-close-icon {
@@ -301,4 +293,3 @@
     width: 34px;
     height: 34px;
   }
-}
