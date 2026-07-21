@@ -248,7 +248,8 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--space-md) var(--space-sm);
-  padding-block: var(--space-md);
+  padding-top: var(--space-lg);      /* ← change padding-block to padding-top, increase value */
+  padding-bottom: var(--space-md);   /* ← keep same as original padding-block value */
 }
 
 .trust-item {
