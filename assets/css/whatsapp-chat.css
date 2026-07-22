@@ -242,7 +242,6 @@
   .whatsapp-widget__box {
     bottom: calc(var(--space-sm) + 42px + 14px + 46px + 12px);
   }
-}
 
   .whatsapp-widget__button-icon,
   .whatsapp-widget__button-close-icon {
@@ -293,3 +292,4 @@
     width: 34px;
     height: 34px;
   }
+}   /* ← the closing brace now goes here, at the very end */

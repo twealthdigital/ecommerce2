@@ -1,0 +1,686 @@
+/* =========================================================
+   AUTH PAGES — signup.html & login.html
+   Split layout: form panel (left) + hero photo panel (right)
+   on desktop (>=1024px). Below that (mobile + tablet), the
+   form panel goes full width with the hero photo as a dark
+   background behind it.
+   Uses the same design tokens as the rest of the site (base.css).
+   Load order: base.css -> auth.css
+   ========================================================= */
+
+/* No header on these pages, so cancel the body's header offset */
+.auth-body {
+  padding-top: 0;
+}
+
+.auth {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--color-bg-dark);
+}
+
+/* -----------------------------
+   Form panel
+   ----------------------------- */
+.auth__panel {
+  position: relative;
+  flex: 1 1 480px;
+  max-width: 600px;
+  padding: var(--space-lg) var(--page-gutter) var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+}
+
+.auth__back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.auth__back:hover {
+  background-color: var(--color-gold);
+  color: #1a1a1a;
+}
+
+.auth__back svg {
+  width: 18px;
+  height: 18px;
+}
+
+.auth__content {
+  max-width: 420px;
+  margin-top: var(--space-xl);
+}
+
+.auth__title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 36px);
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--color-white);
+}
+
+.auth__title-accent {
+  display: block;
+  color: var(--color-gold);
+}
+
+.auth__subtitle {
+  margin-top: var(--space-sm);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+/* -----------------------------
+   Google button
+   ----------------------------- */
+.auth__google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: var(--space-lg);
+  padding: 15px;
+  border: 1px solid var(--color-gold);
+  border-radius: var(--radius-pill);
+  background-color: transparent;
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.auth__google-btn:hover {
+  background-color: var(--color-gold);
+  color: #1a1a1a;
+}
+
+.auth__google-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* -----------------------------
+   Divider
+   ----------------------------- */
+.auth__divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+}
+
+.auth__divider::before,
+.auth__divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: var(--color-border-dark);
+}
+
+/* -----------------------------
+   Form
+   ----------------------------- */
+.auth__section-label {
+  margin-top: var(--space-lg);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.auth__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.auth__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+}
+
+.auth__field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.auth__field-icon {
+  position: absolute;
+  left: 16px;
+  width: 16px;
+  height: 16px;
+  color: var(--color-gold);
+  pointer-events: none;
+}
+
+.auth__field input {
+  width: 100%;
+  padding: 14px 16px 14px 42px;
+  border: 1px solid var(--color-border-dark);
+  border-radius: var(--radius-sm);
+  background-color: transparent;
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  transition: border-color var(--transition-fast);
+}
+
+.auth__field input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.auth__field input:focus-visible {
+  outline: none;
+  border-color: var(--color-gold);
+}
+
+.auth__field input:disabled {
+  color: var(--color-text-muted);
+  background-color: rgba(255, 255, 255, 0.03);
+  cursor: not-allowed;
+}
+
+.auth__field--password input {
+  padding-right: 44px;
+}
+
+.auth__toggle-visibility {
+  position: absolute;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.auth__toggle-visibility:hover {
+  color: var(--color-gold);
+}
+
+.auth__toggle-visibility svg {
+  width: 18px;
+  height: 18px;
+}
+
+.auth__toggle-visibility .auth__eye-off {
+  display: none;
+}
+
+.auth__toggle-visibility[aria-pressed="true"] .auth__eye {
+  display: none;
+}
+
+.auth__toggle-visibility[aria-pressed="true"] .auth__eye-off {
+  display: block;
+}
+
+/* -----------------------------
+   Checkbox
+   ----------------------------- */
+.auth__checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: var(--space-xs);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.auth__checkbox input {
+  width: 16px;
+  height: 16px;
+  margin-top: 1px;
+  flex-shrink: 0;
+  accent-color: var(--color-gold);
+}
+
+.auth__checkbox a {
+  color: var(--color-gold);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.auth__checkbox a:hover {
+  color: var(--color-gold-light);
+}
+
+/* -----------------------------
+   Submit + error text
+   ----------------------------- */
+.auth__submit {
+  width: 100%;
+  margin-top: var(--space-xs);
+}
+
+.auth__error {
+  margin-top: -4px;
+  font-size: 12.5px;
+  color: #e57373;
+  display: none;
+}
+
+.auth__error.is-visible {
+  display: block;
+}
+
+.auth__switch {
+  margin-top: var(--space-lg);
+  text-align: center;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.auth__switch a {
+  color: var(--color-gold);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.auth__switch a:hover {
+  color: var(--color-gold-light);
+}
+
+/* -----------------------------
+   Photo panel (desktop side panel)
+   ----------------------------- */
+.auth__media {
+  display: none;
+  flex: 1 1 50%;
+  background-image:
+    linear-gradient(rgba(12, 12, 12, var(--auth-media-overlay, 0)), rgba(12, 12, 12, var(--auth-media-overlay, 0))),
+    url('../images/herosectionimg.webp');
+  background-size: cover;
+  background-position: 65% center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* -----------------------------
+   Desktop (>=1024px) — side-by-side split, 50/50
+   ----------------------------- */
+@media (min-width: 1024px) {
+  .auth__media {
+    display: block;
+    --auth-media-overlay: 0.5;
+  }
+
+  .auth__panel {
+    flex: 1 1 50%;
+    max-width: 50%;
+    padding-inline: var(--space-2xl);
+  }
+
+  .auth__content {
+    max-width: 100%;
+  }
+}
+
+/* -----------------------------
+   "Edit email" link (verify-code.html) — sits right under the
+   disabled email field, sends the person back to forgot-password.html
+   ----------------------------- */
+.auth__edit-email {
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 6px;
+  margin-top: -8px;
+  font-size: 12.5px;
+  color: var(--color-text-muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--transition-fast);
+}
+
+.auth__edit-email:hover {
+  color: var(--color-gold);
+}
+
+.auth__edit-email svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* -----------------------------
+   Loading spinner shown beside the Continue button
+   (verify-code.html) while a code is being validated
+   ----------------------------- */
+.auth__submit:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.auth__spinner {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  border: 2px solid rgba(26, 26, 26, 0.35);
+  border-top-color: #1a1a1a;
+  border-radius: 50%;
+  animation: authSpin 0.7s linear infinite;
+}
+
+@keyframes authSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth__spinner {
+    animation: none;
+  }
+}
+
+.auth__forgot {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -4px;
+}
+
+.auth__forgot a {
+  font-size: 12.5px;
+  color: var(--color-text-muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--transition-fast);
+}
+
+.auth__forgot a:hover {
+  color: var(--color-gold);
+}
+
+/* -----------------------------
+   Flip layout (forgot-password.html) — photo on the left,
+   form panel on the right, on desktop. Achieved by putting
+   .auth__media before .auth__panel in the HTML; this block
+   only handles the back-button position, which needs to sit
+   at the outer-right edge now instead of the outer-left.
+   ----------------------------- */
+.auth--flip .auth__back {
+  align-self: flex-end;
+}
+
+/* -----------------------------
+   Security note (forgot-password.html) — icon + short line
+   between the subtitle and the email field
+   ----------------------------- */
+.auth__note {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: var(--space-lg);
+}
+
+.auth__note-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-color: var(--color-bg-dark-alt);
+}
+
+.auth__note-icon svg {
+  width: 18px;
+  height: 18px;
+  color: var(--color-gold);
+}
+
+.auth__note-text {
+  padding-top: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+/* -----------------------------
+   Success text (reuses .auth__error's spacing/visibility
+   pattern, just in gold instead of red)
+   ----------------------------- */
+.auth__success {
+  margin-top: -4px;
+  font-size: 12.5px;
+  color: var(--color-gold);
+  display: none;
+}
+
+.auth__success.is-visible {
+  display: block;
+}
+
+/* -----------------------------
+   Mobile + tablet (<1024px): no side panel — the form
+   panel goes full width/full screen, with the hero photo
+   as a very dark backdrop behind it instead, so it doesn't
+   fight with the text/inputs on top of it.
+   ----------------------------- */
+@media (max-width: 1023.98px) {
+  .auth__panel {
+    max-width: none;
+    background-image:
+      linear-gradient(rgba(12, 12, 12, 0.88), rgba(12, 12, 12, 0.88)),
+      url('../images/herosectionimg.webp');
+    background-size: cover;
+    background-position: 65% center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  .auth__content {
+    max-width: none;
+  }
+}
+
+/* -----------------------------
+   Entrance animation — simple fade + rise,
+   runs once on page load only
+   ----------------------------- */
+.auth__back,
+.auth__content,
+.auth__media {
+  opacity: 0;
+}
+
+.auth__back {
+  transform: translateY(-10px);
+  animation: authFadeUp 0.6s ease-out 0.1s forwards;
+}
+
+.auth__content {
+  transform: translateY(20px);
+  animation: authFadeUp 0.7s ease-out 0.25s forwards;
+}
+
+.auth__media {
+  animation: authFadeIn 0.9s ease-out 0.1s forwards;
+}
+
+@keyframes authFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes authFadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth__back,
+  .auth__content,
+  .auth__media {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* -----------------------------
+   Success modal (reset-password.html) — dark centered card
+   over a blurred backdrop covering the rest of the page
+   ----------------------------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  background-color: rgba(12, 12, 12, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.modal-overlay[hidden] {
+  display: none;
+}
+
+.modal-box {
+  width: 100%;
+  max-width: 380px;
+  padding: var(--space-xl) var(--space-lg);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-dark-alt);
+  border: 1px solid var(--color-border-dark);
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.96);
+  animation: modalPopIn 0.3s ease-out forwards;
+}
+
+@keyframes modalPopIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-box__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 96px;
+  margin-inline: auto;
+  border-radius: 50%;
+  background-color: rgba(212, 175, 55, 0.12);
+}
+
+.modal-box__icon svg {
+  width: 52px;
+  height: 52px;
+  color: var(--color-gold);
+}
+
+.modal-box__title {
+  margin-top: var(--space-md);
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-white);
+}
+
+.modal-box__text {
+  margin-top: var(--space-sm);
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.modal-box__btn {
+  width: 100%;
+  margin-top: var(--space-lg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-box {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.auth__success-highlight {
+  margin-top: var(--space-sm);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-gold);
+  display: none;
+}
+
+.auth__success-highlight.is-visible {
+  display: block;
+}
+
+.auth__success {
+  margin-top: 4px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--color-text-muted);   /* was var(--color-gold) */
+  display: none;
+}
+
+
+/* -----------------------------
+   Field-level validation (signup form)
+   ----------------------------- */
+.auth__field--invalid input {
+  border-color: #e57373;
+}
+
+.auth__field-error {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: 4px;
+  font-size: 11.5px;
+  color: #e57373;
+  display: none;
+}
+
+.auth__field-error.is-visible {
+  display: block;
+}
+
+.auth__checkbox--invalid span {
+  color: #e57373;
+}
+
+.auth__submit.is-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}

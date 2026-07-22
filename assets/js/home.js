@@ -12,8 +12,33 @@ document.addEventListener('DOMContentLoaded', function () {
   initBrandEssence();
   initTestimonials();
   initCollectionsScrollHint();
-  initSocialGallery(); 
+  initSocialGallery();
+  initScrollReveal(); 
 });
+
+/* -----------------------------
+   Scroll entrance — fades/rises each section in once,
+   the first time it scrolls into view
+   ----------------------------- */
+function initScrollReveal() {
+  var sections = document.querySelectorAll('.reveal-up');
+  if (!sections.length) return;
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target); // only ever runs once
+      }
+    });
+  }, { threshold: 0.15 });
+
+  sections.forEach(function (section) {
+    observer.observe(section);
+  });
+}
+
+
 /* -----------------------------
    Hero pagination dots
    (visual only for now — wire up to a real slider

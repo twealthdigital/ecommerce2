@@ -67,15 +67,10 @@
 }
 
 @media (min-width: 1024px) {
-  :root {
-    --header-height: 18px;
-  }
+  :root { --header-height: 96px; }
 }
-
 @media (max-width: 767.98px) {
-  :root {
-    --header-height: 30px;
-  }
+  :root { --header-height: 76px; }
 }
 
 

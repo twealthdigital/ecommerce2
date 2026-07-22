@@ -140,13 +140,13 @@
     </button>
 
     <div class="account-dropdown" data-account-dropdown>
-      <a href="login.html" class="account-dropdown__item" data-account-guest>
+      <a href="signup.html" class="account-dropdown__item" data-account-guest>
         <svg class="account-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M10 17l5-5-5-5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M15 12H3" stroke-linecap="round"/>
         </svg>
-        Sign In
+        Sign Up
       </a>
 
       <p class="account-dropdown__greeting" data-account-user data-account-signed-in hidden></p>
@@ -295,13 +295,13 @@
           </a>
           <ul class="nav-dropdown nav-dropdown--account">
             <li data-account-guest>
-              <a href="login.html" class="nav-dropdown__link nav-dropdown__link--login">
+              <a href="signup.html" class="nav-dropdown__link nav-dropdown__link--signup">
                 <svg class="nav-dropdown__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                   <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" stroke-linecap="round" stroke-linejoin="round"/>
                   <path d="M10 17l5-5-5-5" stroke-linecap="round" stroke-linejoin="round"/>
                   <path d="M15 12H3" stroke-linecap="round"/>
                 </svg>
-                Sign In
+                Sign Up
               </a>
             </li>
             <li data-account-signed-in hidden>

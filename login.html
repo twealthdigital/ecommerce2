@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In | Blegab Luxury Wigs</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/auth.css" />
+  <link rel="icon" type="image/webp" href="assets/images/farvicon.webp" />
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body class="auth-body">
+
+  <main class="auth">
+    <section class="auth__panel">
+      <button type="button" class="auth__back" aria-label="Go back" onclick="window.location.href='signup.html'">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="auth__content">
+        <h1 class="auth__title">Welcome<span class="auth__title-accent">Back</span></h1>
+        <p class="auth__subtitle">Sign in to continue shopping Blegab Luxury Wigs.</p>
+
+        <button type="button" class="auth__google-btn" data-google-auth>
+          <svg class="auth__google-icon" viewBox="0 0 48 48" aria-hidden="true">
+            <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.6 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l6-6C34.5 5.6 29.6 3.5 24 3.5 12.7 3.5 3.5 12.7 3.5 24S12.7 44.5 24 44.5 44.5 35.3 44.5 24c0-1.2-.1-2.4-.3-3.5z"/>
+            <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 15.9 18.9 13 24 13c3.1 0 5.9 1.2 8 3.1l6-6C34.5 6.6 29.6 4.5 24 4.5c-7.7 0-14.4 4.4-17.7 10.2z"/>
+            <path fill="#4CAF50" d="M24 44.5c5.5 0 10.4-2.1 14.1-5.6l-6.5-5.5C29.6 35 26.9 36 24 36c-5.3 0-9.7-3.4-11.3-8.1l-6.5 5C9.5 39.9 16.2 44.5 24 44.5z"/>
+            <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.2 5.7l6.5 5.5C41.5 36.1 44.5 30.6 44.5 24c0-1.2-.1-2.4-.3-3.5z"/>
+          </svg>
+          Sign In with Google
+        </button>
+
+        <div class="auth__divider">OR</div>
+
+        <p class="auth__section-label">Sign In with Email</p>
+
+        <form class="auth__form" id="login-form" novalidate>
+          <p class="auth__error" data-auth-error role="alert"></p>
+
+          <div class="auth__field">
+            <svg class="auth__field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2"/>
+              <path d="M3 7l9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <input type="email" id="login-email" placeholder="Email Address" autocomplete="email" required />
+          </div>
+
+          <div class="auth__field auth__field--password">
+            <svg class="auth__field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="4" y="11" width="16" height="9" rx="2"/>
+              <path d="M8 11V7a4 4 0 0 1 8 0v4" stroke-linecap="round"/>
+            </svg>
+            <input type="password" id="login-password" placeholder="Password" autocomplete="current-password" required />
+            <button type="button" class="auth__toggle-visibility" data-toggle-password aria-pressed="false" aria-label="Show password">
+              <svg class="auth__eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z" stroke-linejoin="round"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              <svg class="auth__eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M17.9 17.9A10.6 10.6 0 0 1 12 19c-7 0-11-7-11-7a18.4 18.4 0 0 1 4.2-5.1M9.9 4.2A9.6 9.6 0 0 1 12 4c7 0 11 7 11 7a18.5 18.5 0 0 1-2.2 3.1" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9.5 9.5a3 3 0 0 0 4.2 4.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1 1l22 22" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="auth__forgot">
+            <a href="forgot-password.html">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn btn-primary auth__submit">Sign In</button>
+        </form>
+
+        <p class="auth__switch">Don't have an account? <a href="signup.html">Sign Up</a></p>
+      </div>
+    </section>
+
+    <aside class="auth__media" role="img" aria-label="Woman wearing a Blegab luxury body wave wig"></aside>
+  </main>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/auth.js"></script>
+</body>
+</html>
