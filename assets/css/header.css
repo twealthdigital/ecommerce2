@@ -954,7 +954,7 @@ body.announcement-dismissed .primary-nav__header {
     gap: var(--space-lg);
     padding-top: 14px;
     padding-inline: var(--page-gutter);
-    padding-bottom: 24px;
+    padding-bottom: 25px;
     overflow-y: visible;
     flex: none;
     min-height: auto;

@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/base.css" />
   <link rel="stylesheet" href="assets/css/header.css" />
-  <link rel="stylesheet" href="assets/css/about.css" />
+  <link rel="stylesheet" href="assets/css/about-us.css" />
   <link rel="stylesheet" href="assets/css/footer.css" />
   <link rel="icon" type="image/webp" href="assets/images/farvicon.webp" />
 </head>
@@ -17,11 +17,410 @@
   <div data-site-header></div>
   <script src="assets/js/header.js"></script>
   <main>
-    <!-- about page content goes here -->
+
+  <!-- =========================================================
+       HERO — About Blegab
+       ========================================================= -->
+  <section class="about-hero" id="aboutHero">
+
+    <div class="about-hero__ribbons" aria-hidden="true">
+      <svg viewBox="0 0 700 800" preserveAspectRatio="xMidYMid slice">
+        <path class="ribbon ribbon--1" d="M-50 60 C 150 120, 250 260, 180 420 S 40 700, 220 780" stroke="url(#ribbonGold)" stroke-width="1.5" fill="none" opacity="0.35"/>
+        <path class="ribbon ribbon--2" d="M-30 160 C 170 200, 260 320, 190 480 S 60 760, 250 830" stroke="url(#ribbonGold)" stroke-width="1" fill="none" opacity="0.22"/>
+        <defs>
+          <linearGradient id="ribbonGold" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#D4AF37" stop-opacity="0"/>
+            <stop offset="50%" stop-color="#E8C864" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <div class="about-hero__scrim"></div>
+
+    <div class="container about-hero__grid">
+      <div class="about-hero__content">
+        <p class="eyebrow-text about-hero__eyebrow">About Blegab</p>
+        <h1 class="about-hero__headline">
+          <span class="about-hero__line about-hero__line--1">Luxury<span class="dot">.</span></span><br>
+          <span class="about-hero__line about-hero__line--2 about-hero__gold">Confidence<span class="dot">.</span></span><br>
+          <span class="about-hero__line about-hero__line--3 about-hero__gold">You<span class="dot">.</span></span>
+        </h1>
+        <p class="about-hero__copy">At Blegab, we don't just make wigs — we create confidence, elevate beauty, and celebrate every woman.</p>
+        <a href="shop.html" class="btn btn-primary about-hero__cta">
+        <span class="btn-icon-wrap">
+            <svg class="btn-icon btn-icon--bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M6 8h12l-1.2 11H7.2z" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 8V6a3 3 0 0 1 6 0v2" stroke-linecap="round"/>
+            </svg>
+            <svg class="btn-icon btn-icon--arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </span>
+        <span class="btn-text">Our Collection</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="about-hero__scroll" aria-hidden="true">
+      <span class="about-hero__scroll-label">Scroll</span>
+      <span class="about-hero__scroll-line"></span>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       OUR STORY
+       ========================================================= -->
+  <section class="story">
+    <div class="container story__grid">
+      <div class="story__media story__slider" id="storySlider">
+        <!-- IMAGE SLOT: story slide 1 -->
+        <img src="assets/images/aboutimage/about-story-1.webp" alt="Blegab wig style 1" class="story__img story__slide is-active" />
+        <!-- IMAGE SLOT: story slide 2 -->
+        <img src="assets/images/aboutimage/about-story-2.webp" alt="Blegab wig style 2" class="story__img story__slide" />
+        <!-- IMAGE SLOT: story slide 3 -->
+        <img src="assets/images/aboutimage/about-story-3.webp" alt="Blegab wig style 3" class="story__img story__slide" />
+        <!-- IMAGE SLOT: story slide 4 -->
+        <img src="assets/images/aboutimage/box.jpeg" alt="Blegab wig style 4" class="story__img story__slide" />
+        <!-- IMAGE SLOT: story slide 5 -->
+        <img src="assets/images/aboutimage/delivery.jpeg" alt="Blegab wig style 4" class="story__img story__slide" />
+        <!-- IMAGE SLOT: story slide 6 -->
+        <img src="assets/images/aboutimage/matching.jpeg" alt="Blegab wig style 5" class="story__img story__slide" />
+        <!-- IMAGE SLOT: story slide 7 -->
+
+        <div class="story__dots">
+          <button class="story__dot is-active" data-index="0" aria-label="Show slide 1"></button>
+          <button class="story__dot" data-index="1" aria-label="Show slide 2"></button>
+          <button class="story__dot" data-index="2" aria-label="Show slide 3"></button>
+          <button class="story__dot" data-index="3" aria-label="Show slide 4"></button>
+          <button class="story__dot" data-index="4" aria-label="Show slide 5"></button>
+          <button class="story__dot" data-index="5" aria-label="Show slide 6"></button>
+        </div>
+      </div>
+
+      <div class="story__content">
+        <p class="eyebrow-text story__badge">Our Story</p>
+        <h2>More Than Hair,<br>It's a Feeling.</h2>
+        <span class="rule"></span>
+        <p>Founded with a passion for beauty and authenticity, Blegab was created to offer premium human hair wigs that empower women to feel their best every day.</p>
+        <p>Every piece is a blend of artistry, precision, and purpose — crafted for women who expect nothing less than excellence.</p>
+        <p class="signature">Blegab</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       STATS BAR
+       ========================================================= -->
+  <section class="stats-bar">
+    <div class="container stats-bar__grid">
+
+      <div class="stat">
+        <span class="stat__emoji" role="img" aria-label="Crown">👑</span>
+        <p class="stat__number">100% Premium Human Hair</p>
+        <p class="stat__label">Ethically Sourced</p>
+      </div>
+
+      <div class="stat">
+        <span class="stat__emoji" role="img" aria-label="Sparkles">✨</span>
+        <p class="stat__number">HD Lace Quality</p>
+        <p class="stat__label">Natural, Seamless Finish</p>
+      </div>
+
+      <div class="stat">
+        <span class="stat__emoji" role="img" aria-label="Shield">🛡️</span>
+        <p class="stat__number">Secure Checkout</p>
+        <p class="stat__label">Safe &amp; Trusted Payments</p>
+      </div>
+
+      <div class="stat">
+        <span class="stat__emoji stat__emoji--spin" role="img" aria-label="Globe">🌍</span>
+        <p class="stat__number">Worldwide Shipping</p>
+        <p class="stat__label">Fast &amp; Reliable Delivery</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================
+       WHY CHOOSE BLEGAB
+       ========================================================= -->
+  <section class="why-choose" id="whyChoose">
+    <div class="why-choose__particles" aria-hidden="true">
+      <span class="why-choose__particle" style="top:12%; left:8%; width:4px; height:4px; animation-duration:18s;"></span>
+      <span class="why-choose__particle" style="top:24%; left:82%; width:6px; height:6px; animation-duration:24s; animation-delay:-4s;"></span>
+      <span class="why-choose__particle" style="top:65%; left:18%; width:3px; height:3px; animation-duration:16s; animation-delay:-8s;"></span>
+      <span class="why-choose__particle" style="top:78%; left:70%; width:5px; height:5px; animation-duration:22s; animation-delay:-2s;"></span>
+      <span class="why-choose__particle" style="top:40%; left:45%; width:2px; height:2px; animation-duration:20s; animation-delay:-11s;"></span>
+      <span class="why-choose__particle" style="top:8%; left:60%; width:5px; height:5px; animation-duration:26s; animation-delay:-6s;"></span>
+      <span class="why-choose__particle" style="top:85%; left:30%; width:3px; height:3px; animation-duration:19s; animation-delay:-13s;"></span>
+      <span class="why-choose__particle" style="top:55%; left:90%; width:4px; height:4px; animation-duration:23s; animation-delay:-9s;"></span>
+    </div>
+
+    <div class="container">
+      <div class="why-choose__heading">
+        <p class="eyebrow-text">Why Choose Blegab</p>
+        <h2>Luxury in Every Detail</h2>
+      </div>
+
+      <div class="why-choose__grid">
+        <div class="why-card">
+          <span class="why-card__icon-wrap">
+            <svg class="why-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 4C10 4 4 10 4 20c10 0 16-6 16-16z"/></svg>
+          </span>
+          <h3>Ethically Sourced</h3>
+          <p>We source only the finest human hair from trusted donors around the world.</p>
+          <span class="why-card__line"></span>
+        </div>
+
+        <div class="why-card">
+          <span class="why-card__icon-wrap">
+            <svg class="why-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 4L18 16M18 4L6 16"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+          </span>
+          <h3>Expert Craftsmanship</h3>
+          <p>Every wig is handcrafted by skilled artisans with years of experience.</p>
+          <span class="why-card__line"></span>
+        </div>
+
+        <div class="why-card">
+          <span class="why-card__icon-wrap">
+            <svg class="why-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="8" width="16" height="10" rx="1"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></svg>
+          </span>
+          <h3>Custom Fit</h3>
+          <p>Designed to fit you perfectly, with comfort, elegance, and natural movement.</p>
+          <span class="why-card__line"></span>
+        </div>
+
+        <div class="why-card">
+          <span class="why-card__icon-wrap">
+            <svg class="why-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3 6 6 1-4.5 4 1 6-5.5-3-5.5 3 1-6L4 9l6-1z"/></svg>
+          </span>
+          <h3>Premium Quality</h3>
+          <p>Long-lasting, soft, and luxurious — because you deserve the best.</p>
+          <span class="why-card__line"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       CRAFTSMANSHIP PROCESS
+       ========================================================= -->
+  <section class="craft">
+    <div class="container craft__grid">
+
+      <div class="craft__content">
+        <p class="eyebrow-text-craft">Our Craftsmanship</p>
+        <h2>Handcrafted<br>To Perfection</h2>
+        <p>From hair selection to the final style, every step is handled with care, precision, and attention to detail.</p>
+        <a href="#" class="btn btn-outline btn-outline--light">
+          <span class="btn-icon-wrap">
+            <svg class="btn-icon btn-icon--bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" stroke-opacity="0.35"/>
+              <path d="M12 3a9 9 0 0 1 8.5 12" stroke-linecap="round"/>
+            </svg>
+            <svg class="btn-icon btn-icon--arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="btn-text">See Our Process</span>
+        </a>
+      </div>
+
+      <div class="craft__strip-wrap">
+
+      <div class="craft__strip" id="craftStrip">
+
+        <div class="craft__step">
+          <!-- IMAGE SLOT: process 01 consultation -->
+          <img src="assets/images/aboutimage/consultant.jpg" alt="Consultation" class="craft__img" />
+          <p class="craft__step-label"><span class="craft__step-num">01</span> Consultation</p>
+        </div>
+        <span class="craft__arrow">&rsaquo;</span>
+
+        <div class="craft__step">
+          <!-- IMAGE SLOT: process 02 hair selection -->
+          <img src="assets/images/aboutimage/selection.jpeg" alt="Hair selection" class="craft__img" />
+          <p class="craft__step-label"><span class="craft__step-num">02</span> Hair Selection</p>
+        </div>
+        <span class="craft__arrow">&rsaquo;</span>
+
+        <div class="craft__step">
+          <!-- IMAGE SLOT: process 03 hand crafting -->
+          <img src="assets/images/aboutimage/crafting.png" alt="Hand crafting" class="craft__img" />
+          <p class="craft__step-label"><span class="craft__step-num">03</span> Hand Crafting</p>
+        </div>
+        <span class="craft__arrow">&rsaquo;</span>
+
+        <div class="craft__step">
+          <!-- IMAGE SLOT: process 04 colour matching -->
+          <img src="assets/images/aboutimage/matching.jpeg" alt="Colour matching" class="craft__img" />
+          <p class="craft__step-label"><span class="craft__step-num">04</span> Colour Matching</p>
+        </div>
+        <span class="craft__arrow">&rsaquo;</span>
+
+        <div class="craft__step">
+          <!-- IMAGE SLOT: process 05 styling -->
+          <img src="assets/images/aboutimage/styling.jpg" alt="Styling" class="craft__img" />
+          <p class="craft__step-label"><span class="craft__step-num">05</span> Styling</p>
+        </div>
+        <span class="craft__arrow">&rsaquo;</span>
+
+        <div class="craft__step">
+          <!-- IMAGE SLOT: process 06 delivery -->
+          <img src="assets/images/aboutimage/delivery.jpeg" alt="Delivery" class="craft__img" />
+          <p class="craft__step-label"><span class="craft__step-num">06</span> Delivery</p>
+        </div>
+
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       GALLERY — Our Work
+       ========================================================= -->
+  <!-- <section class="gallery">
+    <div class="container">
+      <div class="gallery__heading">
+        <div>
+          <p class="eyebrow-text">Our Work</p>
+          <h2>Beauty In Every Strand</h2>
+        </div>
+        <a href="#" class="btn btn-outline">View Gallery</a>
+      </div> -->
+
+      <!-- <div class="gallery__row"> -->
+        <!-- IMAGE SLOTS: gallery 1–7 -->
+        <!-- <img src="images/gallery-1.jpg" alt="Gallery look 1" class="gallery__img" />
+        <img src="images/gallery-2.jpg" alt="Gallery look 2" class="gallery__img" />
+        <img src="images/gallery-3.jpg" alt="Gallery look 3" class="gallery__img" />
+        <img src="images/gallery-4.jpg" alt="Gallery look 4" class="gallery__img" />
+        <img src="images/gallery-5.jpg" alt="Gallery look 5" class="gallery__img" />
+        <img src="images/gallery-6.jpg" alt="Gallery look 6" class="gallery__img" />
+        <img src="images/gallery-7.jpg" alt="Gallery look 7" class="gallery__img" />
+      </div>
+    </div>
+  </section> -->
+
+  <!-- =========================================================
+       TESTIMONIALS
+       ========================================================= -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="testimonials__heading">
+        <p class="eyebrow-text">What Our Clients Say</p>
+        <h2>Real Women. Real Confidence.</h2>
+      </div>
+
+      <div class="testimonials__row" id="testimonialRow">
+
+        <div class="testimonial-card">
+          <p class="testimonial-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+          <p class="testimonial-card__quote">The quality is unreal. My wig looks so natural and the compliments never stop.</p>
+          <div class="testimonial-card__author">
+            <!-- IMAGE SLOT: client avatar -->
+            <img src="assets/images/aboutimage/avatar2.jpg" alt="alt="Jessica M." class="testimonial-card__avatar" />
+            <span align="center">— Jessica M.</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="testimonial-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+          <p class="testimonial-card__quote">Blegab wigs are worth every penny. The craftsmanship and texture are absolutely amazing.</p>
+          <div class="testimonial-card__author">
+            <!-- IMAGE SLOT: client avatar -->
+            <img src="assets/images/aboutimage/avatar.jpg" alt="Sarah O." class="testimonial-card__avatar" />
+            <span>— Sarah O.</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="testimonial-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+          <p class="testimonial-card__quote">Finally a wig that fits perfectly and lasts long. I'll never go anywhere else.</p>
+          <div class="testimonial-card__author">
+            <!-- IMAGE SLOT: client avatar -->
+            <img src="assets/images/aboutimage/avatar3.jpg" alt="Amanda T." class="testimonial-card__avatar" />
+            <span>— Amanda T.</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="testimonial-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+          <p class="testimonial-card__quote">From consultation to delivery, everything felt personal and premium. It's the most natural-looking wig I've ever owned.</p>
+          <div class="testimonial-card__author">
+            <!-- IMAGE SLOT: client avatar -->
+            <img src="assets/images/aboutimage/avatar4.jpg" alt="Ngozi A." class="testimonial-card__avatar" />
+            <span>— Ngozi A.</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="testimonial-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+          <p class="testimonial-card__quote">I get asked constantly where I did my hair. Worth every penny for the confidence it gives me.</p>
+          <div class="testimonial-card__author">
+            <!-- IMAGE SLOT: client avatar -->
+            <img src="assets/images/aboutimage/avatar5.jpg" alt="Priscilla K." class="testimonial-card__avatar" />
+            <span>— Priscilla K.</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="testimonials__nav">
+        <button class="testimonials__arrow" id="testimonialPrev" aria-label="Previous testimonial">&lsaquo;</button>
+        <button class="testimonials__arrow" id="testimonialNext" aria-label="Next testimonial">&rsaquo;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       FOUNDER MESSAGE
+       ========================================================= -->
+  <section class="founder">
+    <div class="container founder__grid">
+      <div class="founder__media">
+        <!-- IMAGE SLOT: founder portrait -->
+        <img src="assets/images/aboutimage/story.jpeg" alt="Blegab founder" class="founder__img" />
+      </div>
+
+      <div class="founder__content">
+        <p class="eyebrow-text"><u>A Message From Our Founder</u></p>
+        <h2>Created With You in Mind.</h2>
+        <span class="rule"></span>
+        <p>Blegab was built on the belief that every woman deserves to feel beautiful, powerful, and unstoppable. Thank you for trusting us to be part of your journey.</p>
+        <p class="signature">Blegab</p>
+        <p class="founder__title"><span class="founder__title-bold">Founder,</span> <span class="founder__title-gold">Blegab Luxury Wigs</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       CTA
+       ========================================================= -->
+  <section class="about-cta">
+    <div class="container about-cta__inner">
+      <h2>Ready To Elevate Your Beauty?</h2>
+      <p>Discover luxurious, handcrafted wigs that were made for you.</p>
+      <a href="shop.html" class="btn btn-primary">
+        <span class="btn-icon-wrap">
+          <svg class="btn-icon btn-icon--bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M6 8h12l-1.2 11H7.2z" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 8V6a3 3 0 0 1 6 0v2" stroke-linecap="round"/>
+          </svg>
+          <svg class="btn-icon btn-icon--arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="btn-text">Shop The Collection</span>
+      </a>
+    </div>
+  </section>
+
   </main>
   <script src="assets/js/product-data.js"></script>
   <script src="assets/js/main.js"></script>
-<script src="assets/js/about.js"></script>
+<script src="assets/js/about-us.js"></script>
 
 <div data-site-footer></div>
 <script src="assets/js/footer.js"></script>
