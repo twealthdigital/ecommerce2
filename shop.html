@@ -2,29 +2,320 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shop All Wigs | Blegab Luxury Wigs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
+  <title>Shop | Blegab Luxury Wigs</title>
+  <meta name="description" content="Shop Blegab's luxury human hair wig collections — lace wigs, bone straight, bob wigs, and more." />
 
+  <!-- Fonts: display serif for headings, sans for body/UI -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="assets/css/base.css" />
   <link rel="stylesheet" href="assets/css/header.css" />
+  <link rel="stylesheet" href="assets/css/home.css" />
   <link rel="stylesheet" href="assets/css/shop.css" />
+  <link rel="stylesheet" href="assets/css/footer.css" />
   <link rel="icon" type="image/webp" href="assets/images/farvicon.webp" />
 </head>
 <body>
 
+  <!-- =========================================================
+       HEADER
+       ========================================================= -->
   <div data-site-header></div>
   <script src="assets/js/header.js"></script>
 
+
+  <!-- =========================================================
+       SHOP HERO — same markup/classes as the homepage hero
+       (assets/css/home.css), only the copy changes.
+       ========================================================= -->
   <main>
-    <!-- shop page content goes here -->
+    <section class="hero" aria-label="Shop hero">
+      <div class="hero__media">
+        <img class="hero__image" src="assets/images/herosectionimg.webp" alt="Woman wearing a Blegab luxury wig" />
+        <div class="hero__scrim"></div>
+      </div>
+
+      <div class="hero__inner container">
+        <div class="hero__content">
+          <p class="eyebrow-text">Shop</p>
+
+          <h1 class="hero__title">
+            <span class="hero__word">SHOP OUR</span>
+            <span class="hero__word hero__title-accent">LUXURY WIGS</span>
+          </h1>
+
+          <p class="hero__subtitle">
+            Premium quality, flawless style. Find the perfect look that defines you.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="breadcrumbs" aria-label="Breadcrumb">
+      <div class="container">
+        <ol class="breadcrumbs__list">
+          <li class="breadcrumbs__item">
+            <a href="index.html" class="breadcrumbs__link">Home</a>
+          </li>
+          <li class="breadcrumbs__item breadcrumbs__item--current" aria-current="page">
+            Shop
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="shop-layout" aria-label="Shop products">
+      <div class="container shop-layout__grid">
+
+        <!-- Filter Overlay (mobile only) -->
+        <div class="shop-filter-overlay" data-filter-overlay></div>
+
+        <!-- Sidebar -->
+        <aside class="shop-sidebar" id="shop-filter-panel" aria-label="Filter products" data-filter-panel>
+          <button type="button" class="shop-filter-panel__close" data-filter-close aria-label="Close filters">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/>
+            </svg>
+          </button>
+
+          <div class="shop-sidebar__block">
+            <h2 class="shop-sidebar__title">Categories</h2>
+            <ul class="shop-sidebar__list">
+              <li><a href="shop.html" class="shop-sidebar__link is-active">All Wigs</a></li>
+              <li><a href="shop.html?category=lace" class="shop-sidebar__link">Lace Wigs</a></li>
+              <li><a href="shop.html?category=bone-straight" class="shop-sidebar__link">Bone Straight</a></li>
+              <li><a href="shop.html?category=curly" class="shop-sidebar__link">Curly Wigs</a></li>
+              <li><a href="shop.html?category=body-wave" class="shop-sidebar__link">Body Wave</a></li>
+              <li><a href="shop.html?category=bob" class="shop-sidebar__link">Bob Wigs</a></li>
+              <li><a href="shop.html?category=custom" class="shop-sidebar__link">Custom Wigs</a></li>
+              <li>
+                <a href="shop.html?category=new-arrivals" class="shop-sidebar__link">
+                  New Arrivals <span class="shop-sidebar__badge">New</span>
+                </a>
+              </li>
+              <li><a href="shop.html?category=best-sellers" class="shop-sidebar__link">Best Sellers</a></li>
+            </ul>
+          </div>
+
+          <div class="shop-sidebar__block">
+            <h2 class="shop-sidebar__title">Filter By</h2>
+
+            <div class="shop-filter">
+              <p class="shop-filter__label">Price</p>
+              <div class="shop-filter__price-row">
+                <span data-price-min>$120</span>
+                <span data-price-max>$1,200</span>
+              </div>
+              <input type="range" class="shop-filter__range" min="120" max="1200" data-price-slider />
+            </div>
+
+            <div class="shop-filter">
+              <p class="shop-filter__label">Length</p>
+              <label class="shop-filter__checkbox"><input type="checkbox" value="8-12" /> 8 - 12 inch</label>
+              <label class="shop-filter__checkbox"><input type="checkbox" value="14-16" /> 14 - 16 inch</label>
+              <label class="shop-filter__checkbox"><input type="checkbox" value="18-20" /> 18 - 20 inch</label>
+              <label class="shop-filter__checkbox"><input type="checkbox" value="22-24" /> 22 - 24 inch</label>
+              <label class="shop-filter__checkbox"><input type="checkbox" value="26-plus" /> 26 inch &amp; above</label>
+            </div>
+
+            <div class="shop-filter">
+              <p class="shop-filter__label">Texture</p>
+              <label class="shop-filter__checkbox"><input type="checkbox" value="straight" /> Straight</label>
+              <label class="shop-filter__checkbox"><input type="checkbox" value="body-wave" /> Body Wave</label>
+              <label class="shop-filter__checkbox"><input type="checkbox" value="loose-wave" /> Loose Wave</label>
+              <label class="shop-filter__checkbox"><input type="checkbox" value="deep-wave" /> Deep Wave</label>
+              <label class="shop-filter__checkbox"><input type="checkbox" value="curly" /> Curly</label>
+              <label class="shop-filter__checkbox"><input type="checkbox" value="kinky-curly" /> Kinky Curly</label>
+            </div>
+
+            <div class="shop-filter">
+              <p class="shop-filter__label">Cap Size</p>
+              <label class="shop-filter__checkbox"><input type="checkbox" value="small" /> Small</label>
+              <label class="shop-filter__checkbox"><input type="checkbox" value="medium" /> Medium</label>
+              <label class="shop-filter__checkbox"><input type="checkbox" value="large" /> Large</label>
+            </div>
+
+            <div class="shop-filter">
+              <p class="shop-filter__label">Lace Type</p>
+              <label class="shop-filter__checkbox"><input type="checkbox" value="hd-lace" /> HD Lace</label>
+              <label class="shop-filter__checkbox"><input type="checkbox" value="transparent-lace" /> Transparent Lace</label>
+              <label class="shop-filter__checkbox"><input type="checkbox" value="swiss-lace" /> Swiss Lace</label>
+            </div>
+
+            <button type="button" class="btn btn-outline shop-sidebar__clear" data-clear-filters>Clear All Filters</button>
+          </div>
+        </aside>
+
+        <!-- =====================================================
+             PRODUCT AREA — toolbar + grid + pagination
+             ===================================================== -->
+        <div class="shop-main">
+          <!-- Mobile filter trigger button -->
+          <button type="button" class="shop-filter-trigger" data-filter-toggle aria-expanded="false" aria-controls="shop-filter-panel">
+            <span class="shop-filter-trigger__label">Filter</span>
+            <svg class="shop-filter-trigger__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M4 6h16M7 12h10M10 18h4" stroke-linecap="round"/>
+            </svg>
+          </button>
+
+          <div class="shop-toolbar">
+            <p class="shop-toolbar__count" data-results-count>Showing results...</p>
+<div class="shop-toolbar__sort">
+  <label for="shop-sort">Sort by</label>
+  <div class="custom-select" data-custom-select>
+    <button type="button" class="custom-select__trigger" data-custom-select-trigger>
+      <span data-custom-select-text>Best Selling</span>
+      <svg class="custom-select__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 9l6 6 6-6"/>
+      </svg>
+    </button>
+    <div class="custom-select__dropdown" data-custom-select-dropdown>
+      <button type="button" class="custom-select__option is-selected" data-value="best-selling">Best Selling</button>
+      <button type="button" class="custom-select__option" data-value="price-low">Price: Low to High</button>
+      <button type="button" class="custom-select__option" data-value="price-high">Price: High to Low</button>
+      <button type="button" class="custom-select__option" data-value="newest">Newest</button>
+    </div>
+  </div>
+  <select id="shop-sort" data-sort-select hidden>
+    <option value="best-selling">Best Selling</option>
+    <option value="price-low">Price: Low to High</option>
+    <option value="price-high">Price: High to Low</option>
+    <option value="newest">Newest</option>
+  </select>
+</div>
+          </div>
+
+          <!-- Product Grid -->
+          <div class="product-grid" data-product-grid>
+            <!-- cards injected here by renderProductGrid() in shop.js -->
+          </div>
+
+          <!-- Pagination -->
+          <nav class="pagination" aria-label="Product pagination">
+            <button type="button" class="pagination__arrow" data-page-prev aria-label="Previous page">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M15 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="pagination__pages" data-page-numbers>
+              <!-- page buttons injected here by renderPagination() in shop.js -->
+            </div>
+            <button type="button" class="pagination__arrow" data-page-next aria-label="Next page">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+<!-- =====================================================
+     NEWSLETTER SECTION
+     ===================================================== -->
+<section class="newsletter" aria-label="Newsletter signup">
+  <div class="container">
+    <div class="newsletter__inner">
+      <div class="newsletter__text">
+        <h2>Join the Blegab Family</h2>
+        <p>Get exclusive offers, new arrivals &amp; wig care tips straight to your inbox.</p>
+      </div>
+      <form class="newsletter__form" data-newsletter-form novalidate>
+        <div class="newsletter__input-wrap">
+          <input 
+            type="email" 
+            class="newsletter__input" 
+            placeholder="Your email address" 
+            required 
+            autocomplete="email"
+          />
+          <span class="newsletter__error" data-newsletter-error></span>
+        </div>
+        <button type="submit" class="btn btn-primary newsletter__submit">
+          <span class="btn-icon-wrap">
+            <svg class="btn-icon btn-icon--mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            <svg class="btn-icon btn-icon--arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+          <span class="btn-text">Subscribe</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+    <!-- Product Modal -->
+    <div class="product-modal-overlay" data-product-modal-overlay></div>
+
+<div class="product-modal" data-product-modal aria-hidden="true">
+      <button type="button" class="product-modal__close" data-product-modal-close aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+      </button>
+
+      <div class="product-modal__scroll">
+      <div class="product-modal__gallery">
+        <span class="product-modal__badge" data-modal-badge hidden>Best Seller</span>
+        <img class="product-modal__main-image" data-modal-main-image src="" alt="" />
+        <div class="product-modal__thumbs" data-modal-thumbs></div>
+      </div>
+
+      <div class="product-modal__details">
+        <h2 class="product-modal__name" data-modal-name></h2>
+        <p class="product-modal__price" data-modal-price></p>
+        <p class="product-modal__desc">Crafted from 100% premium human hair for a soft, natural look that blends effortlessly. Luxurious, lightweight, and long-lasting for everyday beauty.</p>
+
+        <div class="product-modal__options">
+          <p class="product-modal__option-label">Length</p>
+          <div class="product-modal__pills" data-option-group="length">
+            <button type="button" class="option-pill">12"</button>
+            <button type="button" class="option-pill is-active">14"</button>
+            <button type="button" class="option-pill">16"</button>
+            <button type="button" class="option-pill">18"</button>
+            <button type="button" class="option-pill">20"</button>
+          </div>
+
+          <p class="product-modal__option-label">Density</p>
+          <div class="product-modal__pills" data-option-group="density">
+            <button type="button" class="option-pill">150%</button>
+            <button type="button" class="option-pill is-active">180%</button>
+            <button type="button" class="option-pill">200%</button>
+          </div>
+
+          <p class="product-modal__option-label">Lace Type</p>
+          <div class="product-modal__pills" data-option-group="lace">
+            <button type="button" class="option-pill is-active">HD Lace</button>
+            <button type="button" class="option-pill">Transparent Lace</button>
+          </div>
+        </div>
+
+<div class="product-modal__cart-row">
+          <div class="qty-stepper">
+            <button type="button" data-qty-decrease>−</button>
+            <span data-qty-value>1</span>
+            <button type="button" data-qty-increase>+</button>
+          </div>
+          <button type="button" class="btn btn-primary product-modal__add-to-cart" data-modal-add-to-cart>Add to Cart</button>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div data-site-footer></div>
   </main>
 
+  <!-- Scripts -->
   <script src="assets/js/product-data.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/shop.js"></script>
+  <script src="assets/js/footer.js"></script>
+
 </body>
 </html>

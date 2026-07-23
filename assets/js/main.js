@@ -43,6 +43,141 @@ window.BLEGAB_AUTH = {
   }
 };
 
+
+
+window.BLEGAB_CART = {
+  getItems: function () {
+    try { return JSON.parse(localStorage.getItem('blegab_cart')) || []; }
+    catch (e) { return []; }
+  },
+  saveItems: function (items) {
+    localStorage.setItem('blegab_cart', JSON.stringify(items));
+    this.renderBadge();
+    this.renderDrawer();
+  },
+  addItem: function (productId, qty) {
+    var items = this.getItems();
+    var existing = items.find(i => i.id === productId);
+    if (existing) existing.qty += qty; // already ordered — just bump the qty, no duplicate row
+    else items.push({ id: productId, qty: qty });
+    this.saveItems(items);
+  },
+  setQty: function (productId, qty) {
+    var items = this.getItems();
+    var item = items.find(i => i.id === productId);
+    if (!item) return;
+    if (qty < 1) {
+      items = items.filter(i => i.id !== productId);
+    } else {
+      item.qty = qty;
+    }
+    this.saveItems(items);
+  },
+  removeItem: function (productId) {
+    var items = this.getItems().filter(i => i.id !== productId);
+    this.saveItems(items);
+  },
+  getCount: function () {
+    return this.getItems().reduce((sum, i) => sum + i.qty, 0);
+  },
+  renderBadge: function () {
+    document.querySelectorAll('[data-cart-count]').forEach(el => {
+      el.textContent = this.getCount();
+    });
+  },
+  renderDrawer: function () {
+    var body = document.querySelector('.cart-drawer__body');
+    if (!body) return;
+
+    var items = this.getItems();
+    var products = window.BLEGAB_SHOP_PRODUCTS || [];
+
+    if (items.length === 0) {
+      body.innerHTML = '<p class="cart-drawer__empty">Your cart is empty</p>';
+      return;
+    }
+
+body.innerHTML = items.map(function (item) {
+      var product = products.find(function (p) { return p.id === item.id; });
+      if (!product) return '';
+
+      return '' +
+        '<div class="cart-drawer__item">' +
+        '<img src="' + product.image + '" alt="' + product.name + '" class="cart-drawer__item-image" />' +
+          '<div class="cart-drawer__item-info">' +
+            '<span class="cart-drawer__item-name">' + product.name + '</span>' +
+            '<span class="cart-drawer__item-price">$' + Number(product.price).toFixed(2) + '</span>' +
+            '<div class="cart-drawer__item-qty">' +
+              '<button type="button" class="cart-drawer__qty-btn" data-cart-decrease="' + item.id + '" aria-label="Decrease quantity">&minus;</button>' +
+              '<span class="cart-drawer__qty-value">' + item.qty + '</span>' +
+              '<button type="button" class="cart-drawer__qty-btn" data-cart-increase="' + item.id + '" aria-label="Increase quantity">+</button>' +
+                '<button type="button" class="cart-drawer__reset-btn" data-cart-reset="' + item.id + '" aria-label="Reset quantity">' +
+                  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">' +
+                    '<path d="M21 12a9 9 0 1 1-3.4-7.02" stroke-linecap="round"/>' +
+                    '<path d="M21 3v5h-5" stroke-linecap="round" stroke-linejoin="round"/>' +
+                  '</svg>' +
+                '</button>' +
+            '</div>' +
+          '</div>' +
+'<div class="cart-drawer__item-actions">' +
+  '<button type="button" class="cart-drawer__item-delete" data-cart-remove="' + item.id + '" aria-label="Remove item">' +
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">' +
+      '<path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/>' +
+    '</svg>' +
+  '</button>' +
+  '<button type="button" class="cart-drawer__item-add" data-cart-add="' + item.id + '" aria-label="Add one more">' +
+    '<span class="cart-drawer__item-add-text">View</span>' +
+    '<span class="btn-icon-wrap">' +
+      '<svg class="btn-icon btn-icon--bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">' +
+        '<path d="M6 8h12l-1.2 11H7.2z" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '<path d="M9 8V6a3 3 0 0 1 6 0v2" stroke-linecap="round"/>' +
+      '</svg>' +
+      '<svg class="btn-icon btn-icon--arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">' +
+        '<path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '</svg>' +
+    '</span>' +
+  '</button>' +
+'</div>' +
+        '</div>';
+    }).join('');
+  }
+};
+
+// Delegated clicks for qty +/- and remove — works even though items are added to the DOM after page load
+document.addEventListener('click', function (event) {
+  var decreaseBtn = event.target.closest('[data-cart-decrease]');
+  var increaseBtn = event.target.closest('[data-cart-increase]');
+  var removeBtn = event.target.closest('[data-cart-remove]');
+
+  if (decreaseBtn) {
+    var id = decreaseBtn.dataset.cartDecrease;
+    var item = window.BLEGAB_CART.getItems().find(i => i.id === id);
+    if (item) window.BLEGAB_CART.setQty(id, item.qty - 1);
+  }
+
+  if (increaseBtn) {
+    var id2 = increaseBtn.dataset.cartIncrease;
+    var item2 = window.BLEGAB_CART.getItems().find(i => i.id === id2);
+    if (item2) window.BLEGAB_CART.setQty(id2, item2.qty + 1);
+  }
+
+  var resetBtn = event.target.closest('[data-cart-reset]');
+  if (resetBtn) {
+    window.BLEGAB_CART.setQty(resetBtn.dataset.cartReset, 1);
+  }
+
+  if (removeBtn) {
+    window.BLEGAB_CART.removeItem(removeBtn.dataset.cartRemove);
+  }
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  window.BLEGAB_CART.renderBadge();
+  window.BLEGAB_CART.renderDrawer();
+});
+
+
+
 function renderAccountState() {
   var user = window.BLEGAB_AUTH.getUser();
   var header = document.querySelector('.site-header');

@@ -90,7 +90,7 @@
         <div class="footer-col footer-col--contact">
           <h3 class="footer-col__title">Contact</h3>
           <ul class="footer-col__list">
-            <li class="footer-col__contact-item">Email: blegabluxurywigs@gmail.com</li>
+            <li class="footer-col__contact-item">Email: info@blegab.com</li>
             <li class="footer-col__contact-item">Phone: +1 469-618-0809</li>
             <li class="footer-col__contact-item">Dallas, Texas, USA</li>
           </ul>
