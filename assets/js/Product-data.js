@@ -12,6 +12,8 @@
    and a "url" (where the person is sent).
    ========================================================= */
 
+
+   
 window.BLEGAB_PRODUCTS = [
   { name: 'Body Wave Wigs', url: 'shop.html?category=body-wave' },
   { name: 'Bone Straight Wigs', url: 'shop.html?category=bone-straight' },
