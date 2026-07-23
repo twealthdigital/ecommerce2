@@ -44,6 +44,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  
+
   // ---- Story image slider ----
   var slider = document.getElementById('storySlider');
 

@@ -42,12 +42,8 @@ body {
   display: flex;
   align-items: center;
   overflow: hidden;
-  background-color: var(--color-bg-dark);
+  background-color: transparent;
   padding-block: var(--space-2xl);
-  background-image: url('../images/aboutHero.png');
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
 }
 
 /* Background photo — Ken Burns layer
@@ -340,7 +336,6 @@ body {
   .about-hero {
     align-items: flex-end;
     min-height: 780px;
-    background-attachment: fixed;
   }
 
   .about-hero__scroll {
@@ -379,8 +374,9 @@ body {
 
 @media (min-width: 900px) {
   .about-hero {
-    background-attachment: fixed;
+    min-height: 650px;
     background-position: center -100%;
+    padding-block: var(--space-2xl) var(--space-lg);
   }
 
   .about-hero__grid {
@@ -403,6 +399,18 @@ body {
   }
 }
 
+
+.page-fixed-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center -150%;
+  z-index: -1;
+  pointer-events: none;
+}
 
 /* -----------------------------
    Our Story
