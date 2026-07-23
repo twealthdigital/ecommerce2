@@ -14,6 +14,15 @@ body {
   background-color: var(--color-bg-light);
 }
 
+@media (max-width: 899px) {
+  .page-zoom-wrap {
+    transform: scale(0.9);
+    transform-origin: top center;
+    width: 111.11%;
+    margin-left: -5.555%;
+  }
+}
+
 /* Shared image placeholder look — until real photos are dropped in,
    broken <img> tags will show this background so the layout still reads. */
 
