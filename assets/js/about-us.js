@@ -121,3 +121,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
+
+
+var heroBgImg = document.querySelector('.about-hero__bg-img');
+if (heroBgImg && hero && !prefersReducedMotion) {
+  var updateParallax = function () {
+    var rect = hero.getBoundingClientRect();
+    var progress = 1 - (rect.bottom / (rect.height + window.innerHeight));
+    var offset = progress * 60; // px of drift, tweak to taste
+    heroBgImg.style.transform = 'translateY(' + offset + 'px)';
+  };
+  window.addEventListener('scroll', updateParallax, { passive: true });
+  updateParallax();
+}
