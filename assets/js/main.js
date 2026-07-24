@@ -483,22 +483,41 @@ function initCartDrawer() {
 
   // ---- Swipe-to-close (touch devices only) ----
   var touchStartX = 0;
+  var touchStartY = 0;
   var touchCurrentX = 0;
   var isDragging = false;
+  var gestureDirection = null; // 'horizontal' | 'vertical' | null (undecided)
+  var directionLockThreshold = 10; // px of movement before we decide the gesture's direction
   var swipeThreshold = 80; // px — how far right they need to drag before it counts as "close"
 
   drawer.addEventListener('touchstart', function (event) {
     touchStartX = event.touches[0].clientX;
+    touchStartY = event.touches[0].clientY;
     touchCurrentX = touchStartX;
     isDragging = true;
-    drawer.style.transition = 'none'; // follow the finger with no lag while dragging
+    gestureDirection = null;
   }, { passive: true });
 
   drawer.addEventListener('touchmove', function (event) {
     if (!isDragging) return;
+
     touchCurrentX = event.touches[0].clientX;
+    var touchCurrentY = event.touches[0].clientY;
     var deltaX = touchCurrentX - touchStartX;
-    if (deltaX > 0) { // only allow dragging rightward (toward closed)
+    var deltaY = touchCurrentY - touchStartY;
+
+    if (gestureDirection === null) {
+      if (Math.abs(deltaX) > directionLockThreshold || Math.abs(deltaY) > directionLockThreshold) {
+        gestureDirection = Math.abs(deltaX) > Math.abs(deltaY) ? 'horizontal' : 'vertical';
+        if (gestureDirection === 'horizontal') {
+          drawer.style.transition = 'none';
+        }
+      }
+    }
+
+    if (gestureDirection !== 'horizontal') return;
+
+    if (deltaX > 0) {
       drawer.style.transform = 'translateX(' + deltaX + 'px)';
     }
   }, { passive: true });
@@ -506,13 +525,18 @@ function initCartDrawer() {
   drawer.addEventListener('touchend', function () {
     if (!isDragging) return;
     isDragging = false;
-    drawer.style.transition = ''; // hand control back to the CSS transition
-    drawer.style.transform = '';  // let the .is-open class control position again
 
-    var deltaX = touchCurrentX - touchStartX;
-    if (deltaX > swipeThreshold) {
-      closeDrawer();
+    if (gestureDirection === 'horizontal') {
+      drawer.style.transition = '';
+      drawer.style.transform = '';
+
+      var deltaX = touchCurrentX - touchStartX;
+      if (deltaX > swipeThreshold) {
+        closeDrawer();
+      }
     }
+
+    gestureDirection = null;
   });
 }
 
