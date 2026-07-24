@@ -29,6 +29,65 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }, 250);
   });
+
+
+  // ---- Swipe-to-close (touch devices only) — nav opens from the RIGHT, so swipe RIGHT to close
+  var navTouchStartX = 0;
+  var navTouchStartY = 0;
+  var navTouchCurrentX = 0;
+  var navIsDragging = false;
+  var navGestureDirection = null;
+  var navDirectionLockThreshold = 10;
+  var navSwipeThreshold = 80;
+
+  primaryNav.addEventListener('touchstart', function (event) {
+    navTouchStartX = event.touches[0].clientX;
+    navTouchStartY = event.touches[0].clientY;
+    navTouchCurrentX = navTouchStartX;
+    navIsDragging = true;
+    navGestureDirection = null;
+  }, { passive: true });
+
+  primaryNav.addEventListener('touchmove', function (event) {
+    if (!navIsDragging) return;
+
+    navTouchCurrentX = event.touches[0].clientX;
+    var navTouchCurrentY = event.touches[0].clientY;
+    var deltaX = navTouchCurrentX - navTouchStartX;
+    var deltaY = navTouchCurrentY - navTouchStartY;
+
+    if (navGestureDirection === null) {
+      if (Math.abs(deltaX) > navDirectionLockThreshold || Math.abs(deltaY) > navDirectionLockThreshold) {
+        navGestureDirection = Math.abs(deltaX) > Math.abs(deltaY) ? 'horizontal' : 'vertical';
+        if (navGestureDirection === 'horizontal') {
+          primaryNav.style.transition = 'none';
+        }
+      }
+    }
+
+    if (navGestureDirection !== 'horizontal') return;
+
+    if (deltaX > 0) { // only allow dragging RIGHT (toward closed)
+      primaryNav.style.transform = 'translateX(' + deltaX + 'px)';
+    }
+  }, { passive: true });
+
+  primaryNav.addEventListener('touchend', function () {
+    if (!navIsDragging) return;
+    navIsDragging = false;
+
+    if (navGestureDirection === 'horizontal') {
+      primaryNav.style.transition = '';
+      primaryNav.style.transform = '';
+
+      var deltaX = navTouchCurrentX - navTouchStartX;
+      if (deltaX > navSwipeThreshold) {
+        closeNav();
+      }
+    }
+
+    navGestureDirection = null;
+  });
 });
 
 function calculateProductsPerPage() {
@@ -313,6 +372,66 @@ function initShopFilterPanel() {
   document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape') closePanel();
   });
+
+
+  // ---- Swipe-to-close (touch devices only) — panel opens from the LEFT, so swipe LEFT to close
+  var touchStartX = 0;
+  var touchStartY = 0;
+  var touchCurrentX = 0;
+  var isDragging = false;
+  var gestureDirection = null;
+  var directionLockThreshold = 10;
+  var swipeThreshold = 80;
+
+  panel.addEventListener('touchstart', function (event) {
+    touchStartX = event.touches[0].clientX;
+    touchStartY = event.touches[0].clientY;
+    touchCurrentX = touchStartX;
+    isDragging = true;
+    gestureDirection = null;
+  }, { passive: true });
+
+  panel.addEventListener('touchmove', function (event) {
+    if (!isDragging) return;
+
+    touchCurrentX = event.touches[0].clientX;
+    var touchCurrentY = event.touches[0].clientY;
+    var deltaX = touchCurrentX - touchStartX;
+    var deltaY = touchCurrentY - touchStartY;
+
+    if (gestureDirection === null) {
+      if (Math.abs(deltaX) > directionLockThreshold || Math.abs(deltaY) > directionLockThreshold) {
+        gestureDirection = Math.abs(deltaX) > Math.abs(deltaY) ? 'horizontal' : 'vertical';
+        if (gestureDirection === 'horizontal') {
+          panel.style.transition = 'none';
+        }
+      }
+    }
+
+    if (gestureDirection !== 'horizontal') return;
+
+    if (deltaX < 0) { // only allow dragging LEFT (toward closed)
+      panel.style.transform = 'translateX(' + deltaX + 'px)';
+    }
+  }, { passive: true });
+
+  panel.addEventListener('touchend', function () {
+    if (!isDragging) return;
+    isDragging = false;
+
+    if (gestureDirection === 'horizontal') {
+      panel.style.transition = '';
+      panel.style.transform = '';
+
+      var deltaX = touchCurrentX - touchStartX;
+      if (deltaX < -swipeThreshold) {
+        closePanel();
+      }
+    }
+
+    gestureDirection = null;
+  });
+
 }
 
 function initProductModal() {
