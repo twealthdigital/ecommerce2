@@ -480,6 +480,40 @@ function initCartDrawer() {
   document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape') closeDrawer();
   });
+
+  // ---- Swipe-to-close (touch devices only) ----
+  var touchStartX = 0;
+  var touchCurrentX = 0;
+  var isDragging = false;
+  var swipeThreshold = 80; // px — how far right they need to drag before it counts as "close"
+
+  drawer.addEventListener('touchstart', function (event) {
+    touchStartX = event.touches[0].clientX;
+    touchCurrentX = touchStartX;
+    isDragging = true;
+    drawer.style.transition = 'none'; // follow the finger with no lag while dragging
+  }, { passive: true });
+
+  drawer.addEventListener('touchmove', function (event) {
+    if (!isDragging) return;
+    touchCurrentX = event.touches[0].clientX;
+    var deltaX = touchCurrentX - touchStartX;
+    if (deltaX > 0) { // only allow dragging rightward (toward closed)
+      drawer.style.transform = 'translateX(' + deltaX + 'px)';
+    }
+  }, { passive: true });
+
+  drawer.addEventListener('touchend', function () {
+    if (!isDragging) return;
+    isDragging = false;
+    drawer.style.transition = ''; // hand control back to the CSS transition
+    drawer.style.transform = '';  // let the .is-open class control position again
+
+    var deltaX = touchCurrentX - touchStartX;
+    if (deltaX > swipeThreshold) {
+      closeDrawer();
+    }
+  });
 }
 
 
