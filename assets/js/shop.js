@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', function () {
   initProductModal();
   initPaginationArrows();
   initCustomSelect();
+  initPriceSlider();
+  initClearFilters();
   
   // Recalculate on resize
   var resizeTimer;
@@ -532,6 +534,59 @@ function initCustomSelect() {
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
       customSelect.classList.remove('is-open');
+    }
+  });
+}
+
+function initPriceSlider() {
+  var slider = document.querySelector('[data-price-slider]');
+  var priceLeft = document.querySelector('.shop-filter__price-left');
+  var priceRight = document.querySelector('[data-price-end]');
+  if (!slider || !priceLeft || !priceRight) return;
+
+  var prices = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+
+  slider.addEventListener('input', function () {
+    var step = parseInt(this.value);
+    var price = prices[step - 1];
+    priceLeft.textContent = '$' + price;
+
+    if (step === 10) {
+      // At $1,000 — right side turns gold, left side mutes
+      priceRight.classList.add('is-active');
+      priceLeft.classList.add('is-muted');
+    } else {
+      // Normal state — left side gold, right side muted
+      priceRight.classList.remove('is-active');
+      priceLeft.classList.remove('is-muted');
+    }
+  });
+}
+
+function initClearFilters() {
+  var clearBtn = document.querySelector('[data-clear-filters]');
+  if (!clearBtn) return;
+
+  clearBtn.addEventListener('click', function () {
+    // Uncheck all checkboxes
+    var checkboxes = document.querySelectorAll('.shop-filter__checkbox input[type="checkbox"]');
+    checkboxes.forEach(function (cb) {
+      cb.checked = false;
+    });
+
+    // Reset price slider to $100
+    var slider = document.querySelector('[data-price-slider]');
+    var priceLeft = document.querySelector('.shop-filter__price-left');
+    var priceRight = document.querySelector('[data-price-end]');
+    if (slider) {
+      slider.value = 1;
+    }
+    if (priceLeft) {
+      priceLeft.textContent = '$100';
+      priceLeft.classList.remove('is-muted');
+    }
+    if (priceRight) {
+      priceRight.classList.remove('is-active');
     }
   });
 }
