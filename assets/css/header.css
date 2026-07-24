@@ -914,6 +914,12 @@ body.announcement-dismissed .cart-drawer__header {
   flex-direction: column;
 }
 
+.primary-nav.is-dragging {
+  transition: none !important;
+  overflow: hidden !important;
+  touch-action: pan-y !important;
+}
+
 .primary-nav.is-open {
   transform: translateX(0);
 }

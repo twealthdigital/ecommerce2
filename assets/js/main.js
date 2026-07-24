@@ -202,9 +202,8 @@ document.addEventListener('click', function (event) {
 
 document.addEventListener('DOMContentLoaded', renderAccountState);
 
-/* -----------------------------
-   Mobile navigation drawer
-   ----------------------------- */
+
+
 function initMobileNav() {
   var menuToggle = document.querySelector('[data-menu-toggle]');
   var primaryNav = document.querySelector('[data-primary-nav]');
@@ -225,6 +224,9 @@ function initMobileNav() {
     navOverlay.classList.remove('is-visible');
     menuToggle.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
+    // Reset any inline transform from dragging
+    primaryNav.style.transform = '';
+    primaryNav.classList.remove('is-dragging');
   }
 
   menuToggle.addEventListener('click', function () {
@@ -235,15 +237,74 @@ function initMobileNav() {
   navOverlay.addEventListener('click', closeNav);
   if (navClose) navClose.addEventListener('click', closeNav);
 
+  // ---- Swipe-to-close for nav (opens from RIGHT, swipe RIGHT to close) ----
+  var touchStartX = 0;
+  var touchStartY = 0;
+  var touchCurrentX = 0;
+  var isDragging = false;
+  var gestureDirection = null;
+  var directionLockThreshold = 10;
+  var swipeThreshold = 80;
+
+  primaryNav.addEventListener('touchstart', function (event) {
+    touchStartX = event.touches[0].clientX;
+    touchStartY = event.touches[0].clientY;
+    touchCurrentX = touchStartX;
+    isDragging = true;
+    gestureDirection = null;
+  }, { passive: true });
+
+  primaryNav.addEventListener('touchmove', function (event) {
+    if (!isDragging) return;
+
+    touchCurrentX = event.touches[0].clientX;
+    var touchCurrentY = event.touches[0].clientY;
+    var deltaX = touchCurrentX - touchStartX;
+    var deltaY = touchCurrentY - touchStartY;
+
+    if (gestureDirection === null) {
+      if (Math.abs(deltaX) > directionLockThreshold || Math.abs(deltaY) > directionLockThreshold) {
+        gestureDirection = Math.abs(deltaX) > Math.abs(deltaY) ? 'horizontal' : 'vertical';
+        if (gestureDirection === 'horizontal') {
+          primaryNav.classList.add('is-dragging');
+        }
+      }
+    }
+
+    if (gestureDirection !== 'horizontal') return;
+
+    // Only allow dragging RIGHT (toward closed position)
+    if (deltaX > 0) {
+      primaryNav.style.transform = 'translateX(' + deltaX + 'px)';
+    }
+  }, { passive: true });
+
+  primaryNav.addEventListener('touchend', function () {
+    if (!isDragging) return;
+    isDragging = false;
+
+    if (gestureDirection === 'horizontal') {
+      primaryNav.classList.remove('is-dragging');
+      primaryNav.style.transform = '';
+
+      var deltaX = touchCurrentX - touchStartX;
+      if (deltaX > swipeThreshold) {
+        closeNav();
+      }
+    }
+
+    gestureDirection = null;
+  });
+
   // Close the drawer automatically if the viewport grows into desktop size
-window.addEventListener('resize', function () {
-  if (window.innerWidth >= 1024) {
-    closeNav();
-    document.querySelectorAll('.nav-item.has-dropdown.is-open').forEach(function (item) {
-      item.classList.remove('is-open');
-    });
-  }
-});
+  window.addEventListener('resize', function () {
+    if (window.innerWidth >= 1024) {
+      closeNav();
+      document.querySelectorAll('.nav-item.has-dropdown.is-open').forEach(function (item) {
+        item.classList.remove('is-open');
+      });
+    }
+  });
 }
 
 /* -----------------------------
