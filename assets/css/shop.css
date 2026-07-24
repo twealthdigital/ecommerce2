@@ -1060,3 +1060,33 @@
 .product-modal__add-to-cart {
   flex: 1;
 }
+
+.hero__scroll-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-top: var(--space-md);
+  border: 1px solid var(--color-gold);
+  border-radius: 50%;
+  color: var(--color-gold);
+  background: transparent;
+  cursor: pointer;
+  animation: bounce-down 1.8s ease-in-out infinite;
+}
+
+.hero__scroll-btn:hover {
+  background: var(--color-gold);
+  color: #1a1a1a;
+}
+
+.hero__scroll-icon {
+  width: 20px;
+  height: 20px;
+}
+
+@keyframes bounce-down {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}

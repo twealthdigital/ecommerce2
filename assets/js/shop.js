@@ -546,17 +546,28 @@ function initPriceSlider() {
 
   var prices = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 
+  // Stop slider touch from closing the panel
+  slider.addEventListener('touchstart', function (e) {
+    e.stopPropagation();
+  });
+
+  slider.addEventListener('touchmove', function (e) {
+    e.stopPropagation();
+  });
+
+  slider.addEventListener('touchend', function (e) {
+    e.stopPropagation();
+  });
+
   slider.addEventListener('input', function () {
     var step = parseInt(this.value);
     var price = prices[step - 1];
     priceLeft.textContent = '$' + price;
 
     if (step === 10) {
-      // At $1,000 — right side turns gold, left side mutes
       priceRight.classList.add('is-active');
       priceLeft.classList.add('is-muted');
     } else {
-      // Normal state — left side gold, right side muted
       priceRight.classList.remove('is-active');
       priceLeft.classList.remove('is-muted');
     }

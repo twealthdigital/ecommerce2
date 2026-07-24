@@ -49,8 +49,19 @@
 }
 
 .hero__content {
-  max-width: 480px;
-  padding-block: var(--space-xl);
+  padding-top: 200px;
+}
+
+@media (min-width: 768px) {
+  .hero__content {
+    padding-top: 120px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero__content {
+    padding-top: 10px;
+  }
 }
 
 .hero__title {
