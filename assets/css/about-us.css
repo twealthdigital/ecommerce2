@@ -1197,8 +1197,8 @@ body {
   height: 44px;
   border-radius: 50%;
   border: 1px solid var(--color-gold);
-  background: var(--color-bg-dark);
-  color: var(--color-gold);
+  background: var(--color-gold);
+  color: #1a1a1a;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1207,15 +1207,19 @@ body {
 }
 
 .craft-lightbox__close:hover {
-  background: var(--color-gold);
-  color: #1a1a1a;
+  background: transparent;
+  color: var(--color-gold);
 }
 
 .craft-lightbox__close svg {
   width: 20px;
   height: 20px;
+  transition: transform 0.4s ease;
 }
 
+.craft-lightbox__close:hover svg {
+  transform: rotate(90deg);
+}
 .craft-lightbox__arrow {
   position: absolute;
   top: 50%;

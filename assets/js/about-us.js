@@ -162,10 +162,10 @@ function initCraftLightbox() {
   var currentIndex = 0;
   var autoplayInterval;
   var isDragging = false;
-  var dragStartY = 0;
-  var dragCurrentY = 0;
   var dragStartX = 0;
+  var dragStartY = 0;
   var dragCurrentX = 0;
+  var dragCurrentY = 0;
   var gestureDirection = null;
 
   craftImages.forEach(function (img) {
@@ -186,6 +186,7 @@ function initCraftLightbox() {
   function closeLightbox() {
     lightbox.classList.remove('is-open');
     lightbox.style.transform = '';
+    lightbox.style.opacity = '';
     document.body.style.overflow = '';
     stopAutoplay();
   }
@@ -222,7 +223,6 @@ function initCraftLightbox() {
     startAutoplay();
   }
 
-  // Open on craft image click
   craftImages.forEach(function (img, index) {
     img.style.cursor = 'pointer';
     img.addEventListener('click', function () {
@@ -230,17 +230,14 @@ function initCraftLightbox() {
     });
   });
 
-  // Close button
   if (closeBtn) {
     closeBtn.addEventListener('click', closeLightbox);
   }
 
-  // Click outside image to close
   lightbox.addEventListener('click', function (e) {
     if (e.target === lightbox) closeLightbox();
   });
 
-  // Arrows
   if (prevBtn) {
     prevBtn.addEventListener('click', function (e) {
       e.stopPropagation();
@@ -254,7 +251,6 @@ function initCraftLightbox() {
     });
   }
 
-  // Keyboard
   document.addEventListener('keydown', function (e) {
     if (!lightbox.classList.contains('is-open')) return;
     if (e.key === 'Escape') closeLightbox();
@@ -262,7 +258,7 @@ function initCraftLightbox() {
     if (e.key === 'ArrowLeft') prevImage();
   });
 
-  // ---- Swipe horizontal to change image, swipe down to close ----
+  // ---- Touch: swipe left/right to change, swipe up/down to close ----
   lightbox.addEventListener('touchstart', function (e) {
     dragStartX = e.touches[0].clientX;
     dragStartY = e.touches[0].clientY;
@@ -271,7 +267,6 @@ function initCraftLightbox() {
     isDragging = true;
     gestureDirection = null;
     stopAutoplay();
-    lightboxImage.style.transition = 'none';
   }, { passive: true });
 
   lightbox.addEventListener('touchmove', function (e) {
@@ -288,13 +283,11 @@ function initCraftLightbox() {
       }
     }
 
-    if (gestureDirection === 'horizontal') {
-      lightboxImage.style.transform = 'translateX(' + deltaX + 'px)';
-    }
-
-    if (gestureDirection === 'vertical' && deltaY > 0) {
+    if (gestureDirection === 'vertical') {
+      // Swipe up OR down to close
+      lightbox.style.transition = 'none';
       lightbox.style.transform = 'translateY(' + deltaY + 'px)';
-      lightbox.style.opacity = 1 - (deltaY / window.innerHeight);
+      lightbox.style.opacity = 1 - (Math.abs(deltaY) / (window.innerHeight * 0.6));
     }
   }, { passive: true });
 
@@ -305,29 +298,32 @@ function initCraftLightbox() {
     var deltaX = dragCurrentX - dragStartX;
     var deltaY = dragCurrentY - dragStartY;
 
-    lightboxImage.style.transition = 'transform 0.3s ease';
-    lightboxImage.style.transform = '';
+    lightbox.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
 
     if (gestureDirection === 'horizontal') {
-      if (Math.abs(deltaX) > 80) {
+      if (Math.abs(deltaX) > 60) {
         if (deltaX > 0) prevImage();
         else nextImage();
       }
     }
 
     if (gestureDirection === 'vertical') {
-      lightbox.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
-      lightbox.style.transform = '';
-      lightbox.style.opacity = '';
-
-      if (deltaY > 120) {
+      if (Math.abs(deltaY) > 100) {
         closeLightbox();
+      } else {
+        // Snap back
+        lightbox.style.transform = '';
+        lightbox.style.opacity = '';
+        if (lightbox.classList.contains('is-open')) {
+          startAutoplay();
+        }
+      }
+    } else {
+      if (lightbox.classList.contains('is-open')) {
+        startAutoplay();
       }
     }
 
     gestureDirection = null;
-    if (lightbox.classList.contains('is-open')) {
-      startAutoplay();
-    }
   });
 }
