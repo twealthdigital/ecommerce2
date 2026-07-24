@@ -574,6 +574,7 @@ function initPriceSlider() {
   });
 }
 
+
 function initClearFilters() {
   var clearBtn = document.querySelector('[data-clear-filters]');
   if (!clearBtn) return;

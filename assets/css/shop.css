@@ -260,8 +260,8 @@
 
   .shop-sidebar__footer {
     flex-shrink: 0;
-    padding: var(--space-md);
-    border-top: 1px solid var(--color-border-dark);
+    padding: var(--space-xs) var(--space-md) var(--space-sm);
+    background-color: var(--color-bg-dark-alt);
   }
 }
 
@@ -849,8 +849,95 @@
 
 @media (min-width: 1024px) {
   .shop-layout__grid {
-    grid-template-columns: 260px 1fr;
+    grid-template-columns: 280px 1fr;
     align-items: start;
+  }
+
+  /* Make the shop layout the sticky boundary */
+  .shop-layout {
+    position: relative;
+  }
+
+  /* Sticky sidebar — only sticks within shop-layout */
+  .shop-sidebar {
+    position: sticky;
+    top: calc(var(--header-height) + 10px);
+    max-height: calc(100vh - var(--header-height) - 30px);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-bg-dark-alt);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .shop-sidebar__scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-md) var(--space-md) 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-gold) var(--color-bg-dark-alt);
+  }
+
+  .shop-sidebar__scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .shop-sidebar__scroll::-webkit-scrollbar-track {
+    background: var(--color-bg-dark-alt);
+  }
+
+  .shop-sidebar__scroll::-webkit-scrollbar-thumb {
+    background-color: var(--color-gold);
+    border-radius: var(--radius-pill);
+  }
+
+  .shop-sidebar__footer {
+    flex-shrink: 0;
+    padding: 15px var(--space-md) var(--space-md);
+    background-color: var(--color-bg-dark-alt);
+  }
+
+  body.announcement-dismissed .shop-sidebar {
+    top: calc(var(--header-height) + 10px);
+    max-height: calc(100vh - var(--header-height) - 30px);
+  }
+
+  /* Hide mobile close button on desktop */
+  .shop-filter-panel__close {
+    display: none;
+  }
+
+  /* Compact categories */
+  .shop-sidebar__link {
+    padding: 9px 12px;
+    font-size: 12.5px;
+  }
+
+  .shop-sidebar__block {
+    margin-bottom: var(--space-md);
+  }
+
+  .shop-filter {
+    margin-bottom: var(--space-xs);
+  }
+
+  .shop-filter__checkbox {
+    padding-block: 3px;
+    font-size: 12px;
+  }
+
+  .shop-filter__label {
+    font-size: 11px;
+    margin-bottom: 4px;
+  }
+
+  /* Newsletter full width */
+  .newsletter {
+    width: 100%;
+  }
+
+  .newsletter .container {
+    max-width: var(--page-max-width);
   }
 }
 
