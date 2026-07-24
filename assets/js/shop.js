@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   // ---- Swipe-to-close (touch devices only) — nav opens from the RIGHT, so swipe RIGHT to close
+  var primaryNav = document.querySelector('[data-primary-nav]');
   var navTouchStartX = 0;
   var navTouchStartY = 0;
   var navTouchCurrentX = 0;
